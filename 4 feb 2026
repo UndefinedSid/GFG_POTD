@@ -1,0 +1,34 @@
+Problem link -->  https://www.geeksforgeeks.org/problems/last-moment-before-all-ants-fall-out-of-a-plank/1
+
+// C++ code
+class Solution {
+public:
+    int getLastMoment(int n, vector<int>& left, vector<int>& right) {
+        int ans = 0;
+        for (int pos : left) {
+            ans = max(ans, pos);
+        }
+        for (int pos : right) {
+            ans = max(ans, n - pos);
+        }
+        return ans;
+    }
+};
+
+// python code
+
+class Solution:
+    def getLastMoment(self, n: int, left: list[int], right: list[int]) -> int:
+        # The time for an ant moving left to fall off is its position 'pos' (distance to 0)
+        # The time for an ant moving right to fall off is 'n - pos' (distance to n)
+        ans = 0
+        # Check all ants moving left
+        for pos in left:
+            ans = max(ans, pos)
+            
+        # Check all ants moving right
+        for pos in right:
+            ans = max(ans, n - pos)
+            
+        return ans
+    
