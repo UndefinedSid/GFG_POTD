@@ -2,6 +2,8 @@ Problem link  ->> http://geeksforgeeks.org/problems/equalize-the-towers2804/1
 
 
 // Approach 1: Weighted Median (Optimal & Recommended)
+// Time complexity  -> O(n logn)
+
 class Solution {
   public:
   using ll =long long;
@@ -40,6 +42,7 @@ class Solution {
 };
 
 // Approach 2: Binary Search on Height (Convex Function)
+//  Time complexity  -> O(n log(maxHeight))
 
 class Solution {
 public:
