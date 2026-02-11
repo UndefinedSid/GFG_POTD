@@ -1,0 +1,40 @@
+Problem link  ->> http://geeksforgeeks.org/problems/equalize-the-towers2804/1
+
+
+// Approach 1: Weighted Median (Optimal & Recommended)
+class Solution {
+  public:
+  using ll =long long;
+    int minCost(vector<int>& heights, vector<int>& cost) {
+        // code here
+        int n=heights.size();
+        vector<pair<int,int>> heightCost;
+        for(int i=0;i<n;i++){
+            heightCost.push_back({heights[i],cost[i]});
+        }
+        sort(heightCost.begin(),heightCost.end());
+        
+        ll totalWt=0;
+        for(int i=0;i<n;i++){
+            totalWt += heightCost[i].second;
+        }
+        
+        ll preWt=0;
+        int medHt=0;
+        
+        for(int i=0;i<n;i++){
+            preWt += heightCost[i].second;
+            if(preWt * 2 >= totalWt){
+                medHt = heightCost[i].first;
+                break;
+            }
+        }
+        
+        ll ans=0;
+        
+        for(int i=0;i<n;i++){
+            ans += 1LL * abs(heights[i] - medHt) * cost[i];
+        }  
+        return ans;
+    }
+};
