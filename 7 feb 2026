@@ -24,3 +24,24 @@ class Solution {
         return ans;
     }
 };
+
+// Python code
+
+from typing import List
+class Solution:
+    def maxSum(self, arr: List[int]) -> int:
+        n = len(arr)
+        total_sum = 0
+        prev = 0
+        
+        for i in range(n):
+            prev += arr[i] * i
+            total_sum += arr[i]
+        
+        ans = prev
+        
+        for i in range(1, n):
+            prev = prev + total_sum - n * arr[n - i]
+            ans = max(ans, prev)
+        
+        return ans
