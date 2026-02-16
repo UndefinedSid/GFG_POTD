@@ -1,0 +1,29 @@
+Problem link -->  https://www.geeksforgeeks.org/problems/maximum-product-subarray3604/1
+
+// python code
+
+class Solution:
+	def maxProduct(self,arr):
+		# code here
+		n=len(arr)
+		suff=1
+		pref=1
+		maxProd=float('-inf')
+		
+		for i in range(0,n):
+		    if pref == 0:
+		        pref=1
+		    if suff == 0:
+		        suff=1
+		    
+		    pref=pref * arr[i]
+		    suff=suff * arr[n-i-1]
+		    
+		    maxProd=max(maxProd,max(suff,pref))
+		
+		return maxProd
+
+
+    // C++ code
+
+    
