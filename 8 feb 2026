@@ -26,4 +26,29 @@ class Solution:
 
     // C++ code
 
+class Solution {
+public:
+    int maxProduct(const vector<int>& arr) {
+        int n = arr.size();
+        int suff = 1;
+        int pref = 1;
+        int maxProd = numeric_limits<int>min();
+
+        for (int i = 0; i < n; ++i) {
+            if (pref == 0) {
+                pref = 1;
+            }
+            if (suff == 0) {
+                suff = 1;
+            }
+
+            pref *= arr[i];
+            suff *= arr[n - i - 1];
+
+            maxProd = max(maxProd, max(suff, pref));
+        }
+
+        return maxProd;
+    }
+};
     
