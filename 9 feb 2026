@@ -1,0 +1,26 @@
+Problem link -->  https://www.geeksforgeeks.org/problems/rotation4723/1
+
+// C++ code
+
+class Solution {
+  public:
+    int findKRotation(vector<int> &arr) {
+        // Code Here
+        
+    }
+};
+
+// python code
+
+class Solution:
+    def findKRotation(self, arr):
+        # code here
+        n=len(arr)
+        ans=0
+        for i in range(0,n-1):
+            if arr[i] > arr[i+1]:
+                ans=i + 1
+        
+                
+        return ans
+        
