@@ -27,3 +27,26 @@ class Solution {
     }
 };
 
+// Python code
+
+class Solution:
+    def kokoEat(self, arr, k):
+        # Code here
+        st = 1
+        end = max(arr)
+        ans = end
+        
+        while st <= end:
+            mid = st + (end - st) // 2
+            time = 0
+            
+            for val in arr:
+                time += (val + mid - 1) // mid
+            
+            if time <= k:
+                ans = mid
+                end = mid - 1
+            else:
+                st = mid + 1
+        
+        return ans
