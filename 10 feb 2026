@@ -1,0 +1,29 @@
+Problem link -->  https://www.geeksforgeeks.org/problems/koko-eating-bananas/1
+
+// C++ code
+
+class Solution {
+  public:
+    int kokoEat(vector<int>& arr, int k) {
+        // Code here
+        int st=1;
+        int end=*max_element(arr.begin(),arr.end());
+        int ans=end;
+        while(st <= end){
+            int mid=st + (end-st)/ 2;
+            long long time=0;
+            for(int val : arr){
+                time += (val + mid -1)/mid;
+            }
+            if(time <= k){
+                ans=mid;
+                end=mid -1;
+            }else{
+                st=mid+1;
+            }
+            
+        }
+        return ans;
+    }
+};
+
