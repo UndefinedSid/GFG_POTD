@@ -1,0 +1,61 @@
+Problem link -->> https://www.geeksforgeeks.org/problems/all-numbers-with-specific-difference3558/1
+
+// C++ code
+
+class Solution {
+  public:
+  using ll =long long;
+  
+    int getSum(ll mid){
+        int sum=0;
+        while (mid > 0){
+            sum += mid % 10;
+            mid =mid / 10;
+        }
+        return sum;
+    }
+    
+    int getCount(int n, int d) {
+        // code here
+        ll st=1;
+        ll end=n;
+        ll ans=(ll)n + 1;
+        while(st <= end){
+            ll mid= st + (end-st) / 2;
+            if(mid -getSum(mid) >= d){
+                 ans=mid;
+                end=mid-1;
+            }else {
+                st=mid+1;
+            }
+        }
+        int count=n-ans+1;
+        return count;
+    }
+};
+
+// Python code
+
+class Solution:
+    def getSum(self, mid: int) -> int:
+        total = 0
+        while mid > 0:
+            total += mid % 10
+            mid //= 10
+        return total
+
+    def getCount(self, n: int, d: int) -> int:
+        st = 1
+        end = n
+        ans = n + 1
+        while st <= end:
+            mid = st + (end - st) // 2
+            if mid - self.getSum(mid) >= d:
+                ans = mid
+                end = mid - 1
+            else:
+                st = mid + 1
+        count = n - ans + 1
+        return count
+
+        
