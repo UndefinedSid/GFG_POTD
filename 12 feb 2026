@@ -1,0 +1,83 @@
+Problem link --> https://www.geeksforgeeks.org/problems/max-min-height--170647/1
+
+// C++ code
+
+#include <vector>
+#include <algorithm>
+
+bool can_achieve(const std::vector<int>& arr, int k, int w, int target) {
+    int n = arr.size();
+    std::vector<int> water(n + 1, 0);
+    int used = 0;
+    int curr = 0;
+
+    for (int i = 0; i < n; ++i) {
+        curr += water[i];
+        if (arr[i] + curr < target) {
+            int need = target - (arr[i] + curr);
+            used += need;
+            if (used > k) return false;
+            curr += need;
+            if (i + w < n) water[i + w] -= need;
+        }
+    }
+    return true;
+}
+
+class Solution {
+public:
+    int maxMinHeight(std::vector<int>& arr, int k, int w) {
+        int n = arr.size();
+        int low = *std::min_element(arr.begin(), arr.end());
+        int high = low + k;
+        int ans = low;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (can_achieve(arr, k, w, mid)) {
+                ans = mid;
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return ans;
+    }
+};
+
+// Python code
+
+def can_achieve(arr, k, w, target):
+    n = len(arr)
+    water = [0] * (n+1)
+    used = 0
+    curr = 0
+    
+    for i in range(n):
+        curr += water[i]
+        if arr[i] + curr < target:
+            need = target - (arr[i] + curr)
+            used += need
+            if used > k: return False
+            curr += need
+            if i+w < n: water[i+w] -= need
+    return True
+
+class Solution():
+    def maxMinHeight(self, arr, k, w):
+        # code here
+        n = len(arr)
+        low, high = min(arr), min(arr) + k
+        ans = low
+    
+        while low <= high:
+            mid = (low + high) // 2
+            if can_achieve(arr, k, w, mid):
+                ans = mid
+                low = mid + 1
+            else:
+                high = mid - 1
+        return ans
+        
+
+    
