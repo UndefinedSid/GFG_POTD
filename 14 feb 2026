@@ -1,0 +1,89 @@
+Problem Link --> 
+
+// C++ code
+
+class Solution {
+  public:
+  
+    bool isPossible(vector<int>& arr, int k, long long maxTime) {
+        long long currSum = 0;
+        int painters = 1;
+        
+        for(int i = 0; i < arr.size(); i++) {
+            if(arr[i] > maxTime)
+                return false;
+                
+            if(currSum + arr[i] > maxTime) {
+                painters++;
+                currSum = arr[i];
+                
+                if(painters > k)
+                    return false;
+            } else {
+                currSum += arr[i];
+            }
+        }
+        return true;
+    }
+  
+    int minTime(vector<int>& arr, int k) {
+        long long low = *max_element(arr.begin(), arr.end());
+        long long high = 0;
+        
+        for(int i = 0; i < arr.size(); i++)
+            high += arr[i];
+            
+        long long ans = high;
+        
+        while(low <= high) {
+            long long mid = low + (high - low) / 2;
+            
+            if(isPossible(arr, k, mid)) {
+                ans = mid;
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+        
+        return (int)ans;
+    }
+
+// Python code
+
+from typing import List
+class Solution:
+    def isPossible(self, arr: List[int], k: int, maxTime: int) -> bool:
+        currSum = 0
+        painters = 1
+        
+        for time in arr:
+            if time > maxTime:
+                return False
+                
+            if currSum + time > maxTime:
+                painters += 1
+                currSum = time
+                
+                if painters > k:
+                    return False
+            else:
+                currSum += time
+        return True
+  
+    def minTime(self, arr: List[int], k: int) -> int:
+        low = max(arr)
+        high = sum(arr)
+        ans = high
+        
+        while low <= high:
+            mid = low + (high - low) // 2
+            
+            if self.isPossible(arr, k, mid):
+                ans = mid
+                high = mid - 1
+            else:
+                low = mid + 1
+        
+        return ans
+};
