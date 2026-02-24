@@ -25,3 +25,22 @@ class Solution {
     }
 };
 
+// python code
+
+from typing import List
+class Solution:
+    def findMinDiff(self, a: List[int], m: int) -> int:
+        a.sort()
+        if m == 1:
+            return 0
+        
+        ans = float('inf')
+        i = 0
+        
+        while i + m - 1 < len(a):
+            j = i + m - 1
+            range_diff = a[j] - a[i]
+            ans = min(ans, range_diff)
+            i += 1
+        
+        return ans
