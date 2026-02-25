@@ -1,0 +1,62 @@
+Problem link --> https://www.geeksforgeeks.org/problems/intersecting-intervals/1
+
+// C++ code
+
+class Solution {
+  public:
+    int overlapInt(vector<vector<int>> &arr) {
+        // code here
+        vector<pair<int,int>> events;
+        
+        for(auto& it : arr){
+            events.push_back({it[0],1});
+            events.push_back({it[1],2});
+        }
+        sort(events.begin(),events.end());
+        
+        int maxi=0;
+        int curr=0;
+        
+        for(auto& ev : events){
+            if(ev.second==1)
+                curr++;
+            else{
+                maxi=max(maxi,curr);
+                curr--;
+            }
+            maxi=max(maxi,curr);
+        }
+        return maxi;
+    }
+};
+
+// Python code
+
+class Solution:
+    def overlapInt(self, arr):
+        # code here
+        start=sorted([i[0] for i in arr])
+        end=sorted([i[1] for i in arr])
+        
+        n=len(arr)
+        maxi=0
+        curr=0
+        
+        j=0
+        
+        for val in start:
+            while start[j] > end[j]:
+                pass
+            
+            if val <= end[j]:
+                curr += 1
+                if curr > maxi:
+                    maxi=curr
+                    
+            else:
+                j += 1
+                
+        return maxi
+
+
+        
