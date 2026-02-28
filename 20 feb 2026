@@ -35,3 +35,29 @@ class Solution {
 
 // Python code
 
+from functools import cmp_to_key
+class Solution:
+    def findLargest(self, arr):
+        # 1. Convert all integers to strings
+        temp = [str(num) for num in arr]
+        
+        # 2. Define the custom comparison logic
+        # Returns 1 if b+a is larger, -1 if a+b is larger
+        def compare(a, b):
+            if a + b > b + a:
+                return -1
+            elif a + b < b + a:
+                return 1
+            else:
+                return 0
+        
+        # 3. Sort using the custom key
+        temp.sort(key=cmp_to_key(compare))
+        
+        # 4. Handle the edge case where the largest number is "0"
+        if temp[0] == "0":
+            return "0"
+            
+        # 5. Join and return the result
+        return "".join(temp)
+
