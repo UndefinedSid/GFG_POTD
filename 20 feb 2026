@@ -1,0 +1,37 @@
+Problem link --> https://www.geeksforgeeks.org/problems/largest-number-formed-from-an-array1117/1
+
+// C++ code
+
+class Solution {
+  public:
+  
+    static bool compare(const string &a,const string &b){
+        return (a + b) > (b + a);
+    }
+  
+    string findLargest(vector<int> &arr) {
+        // code here
+        string ans="";
+        vector<string> temp;
+        for(int nums : arr){
+            temp.push_back(to_string(nums));
+        }
+        
+        sort(temp.begin(),temp.end(),compare);
+        
+        for(string str : temp)
+        cout << str << " ";
+        
+        if(temp[0]=="0")
+            return "0";
+            
+        for(string str : temp){
+            ans += str;
+        }
+        
+        return ans;
+    }
+};
+
+// Python code
+
