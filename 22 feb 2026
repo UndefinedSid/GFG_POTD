@@ -1,0 +1,57 @@
+Problem link --> https://www.geeksforgeeks.org/problems/count-subarray-with-given-xor/1
+
+// C++ code
+
+class Solution {
+  public:
+  using ll=long long;
+  
+    int subarrayXor(vector<int> &arr, int k) {
+        // code here
+    int count = 0;
+    int curr_xor = 0;
+    
+    unordered_map<int, int> xor_counts;
+    
+    xor_counts[0] = 1;
+    
+    for (int num : arr) {
+        curr_xor ^= num;
+        int target = curr_xor ^ k;
+        
+        if (xor_counts.find(target) != xor_counts.end()) {
+            count += xor_counts[target];
+        }
+        
+        xor_counts[curr_xor]++;
+    }
+    
+    return count;
+    }
+};
+
+// Python code
+
+from typing import List
+from collections import defaultdict
+
+class Solution:
+    def subarrayXor(self, arr: List[int], k: int) -> int:
+        count = 0
+        curr_xor = 0
+        
+        xor_counts = defaultdict(int)
+        xor_counts[0] = 1
+        
+        for num in arr:
+            curr_xor ^= num
+            target = curr_xor ^ k
+            
+            if target in xor_counts:
+                count += xor_counts[target]
+            
+            xor_counts[curr_xor] += 1
+        
+        return count
+
+        
