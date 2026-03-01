@@ -1,0 +1,49 @@
+Problem link --> https://www.geeksforgeeks.org/problems/find-h-index--165609/1
+
+// C++ code
+
+class Solution {
+  public:
+    int hIndex(vector<int>& citations) {
+        // code here
+        int n=citations.size();
+        vector<int> bucket(n+1,0);
+        
+        for(int val : citations){
+            if(val >= n)
+                bucket[n]++;
+            else
+                bucket[val]++;
+        }
+        int ans=0;
+        for(int i=n;i>=0;i--){
+            ans += bucket[i];
+            if(ans >=i)
+                return i;
+        }
+        return 0;
+    }
+};
+
+// Python code
+
+from typing import List
+class Solution:
+    def hIndex(self, citations: List[int]) -> int:
+        n = len(citations)
+        bucket = [0] * (n + 1)
+        
+        for val in citations:
+            if val >= n:
+                bucket[n] += 1
+            else:
+                bucket[val] += 1
+        
+        ans = 0
+        for i in range(n, -1, -1):
+            ans += bucket[i]
+            if ans >= i:
+                return i
+        return 0
+
+        
