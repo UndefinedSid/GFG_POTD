@@ -21,3 +21,14 @@ class Solution {
     }
 };
 
+// Python code
+
+from typing import List
+
+class Solution:
+    def pushZerosToEnd(self, arr: List[int]) -> None:
+        ans = [val for val in arr if val != 0]
+        ans.extend([0] * (len(arr) - len(ans)))
+        for i in range(len(arr)):
+            arr[i] = ans[i]
+
