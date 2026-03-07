@@ -1,0 +1,30 @@
+Problem link --> https://www.geeksforgeeks.org/problems/trapping-rain-water-1587115621/1
+
+// C++ code
+
+class Solution {
+  public:
+    int maxWater(vector<int> &arr) {
+        int n = arr.size();
+        vector<int> leftMaxi(n);
+        vector<int> rightMaxi(n);
+        
+        leftMaxi = arr;
+        for(int i = 1; i < n; i++) {
+            leftMaxi[i] = max(leftMaxi[i-1], arr[i]);
+        }
+        
+        rightMaxi[n-1] = arr[n-1];
+        for(int i = n-2; i >= 0; i--) {
+            rightMaxi[i] = max(rightMaxi[i+1], arr[i]);
+        }
+        
+        int ans = 0;
+        for(int i = 0; i < n; i++) {
+            int height = min(leftMaxi[i], rightMaxi[i]) - arr[i];
+            ans += height;
+        }
+        
+        return ans;
+    }
+};
