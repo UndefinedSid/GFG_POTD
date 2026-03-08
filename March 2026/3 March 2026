@@ -28,3 +28,27 @@ class Solution {
 
 // Python code
 
+from collections import defaultdict
+class Solution:
+    def totalElements(self, arr):
+        n = len(arr)
+        freq = defaultdict(int)
+        st = 0
+        maxi = 0
+        for end in range(n):
+            freq[arr[end]] += 1
+            
+            while len(freq) > 2:
+                freq[arr[st]] -= 1
+                if freq[arr[st]] == 0:
+                    del freq[arr[st]]
+                st += 1
+            
+            maxi = max(maxi, end - st + 1)
+        return maxi
+
+
+
+
+
+
