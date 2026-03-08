@@ -1,0 +1,30 @@
+Problem link -->  https://www.geeksforgeeks.org/problems/fruit-into-baskets-1663137462/1
+
+// C++ code
+
+class Solution {
+  public:
+    int totalElements(vector<int> &arr) {
+        // code here
+        int n=arr.size();
+        unordered_map<int,int>freq;
+        int st=0;
+        int maxi=0;
+        for(int end=0;end<n;end++){
+            freq[arr[end]]++;
+            
+            while(freq.size() > 2){
+                freq[arr[st]]--;
+                if(freq[arr[st]]==0)
+                    freq.erase(arr[st]);
+                    
+                st++;
+            }
+            maxi=max(maxi,end-st+1);
+        }
+        return maxi;
+    }
+};
+
+// Python code
+
